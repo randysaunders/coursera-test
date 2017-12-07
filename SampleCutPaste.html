@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    function copyToClipboard() {
+        var copyText = document.getElementById('inboundPhoneNumber');
+        copyText.select();
+        document.execCommand('Copy');
+        //alert("Copied the text: " + copyText.value);
+		document.getElementById('inboundPhoneNumberMsg').innerHTML = "phone number " + copyText.value + " copied to clipboard ...";    		
+    }
+    function pasteFromClipboard() {
+        //var pasteText = document.execCommand('Paste');
+		var pasteText = window.clipboardData.getData('Text')
+		// alert("Pasted the text: " + pasteText);
+        document.getElementById('outboundPhoneNumber').value = pasteText;           
+    }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h2><center>Copy and Paste Example</center></h2>
+	  
+	  <h3>Inbound custom JSP or Synchrony Contact info</h3>
+      
+	  <p>Queue:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="Prepaid Enroll" id="queue"></p>
+      <!-- Inbound Phone Number -->
+      <p>Phone Number: 
+      <input type="text" value="5136122300" id="inboundPhoneNumber">
+      
+      <!-- Copy icon as a link -->
+      <a onclick="copyToClipboard()" class="btn btn-link"><span class="glyphicon glyphicon-copy" style="font-size:1.9em"></span></a>	  
+      <!-- Copy icon on a styled link button -->
+      <a class="btn btn-info btn-md" onclick="copyToClipboard()"><span class="glyphicon glyphicon-copy"></span>Copy</a>
+	  </p>
+	  <p id='inboundPhoneNumberMsg' style="color:green;font-style:italic;"> &nbsp;</p>
+      <br>
+	  <hr>
+	  <br>
+      <!-- Outbound Phone Number -->
+	  <h3>Outbound custom JSP or Synchrony Contact info</h3>
+      <p>Phone Number: 
+      <input type="text" id="outboundPhoneNumber">
+	  
+	  <!-- Copy icon as a link -->
+      <a onclick="pasteFromClipboard()" class="btn btn-link"><span class="glyphicon glyphicon-paste" style="font-size:1.9em"></span></a>
+      <!-- Copy icon on a styled link button -->      
+      <a onclick="pasteFromClipboard()" class="btn btn-info btn-md"><span class="glyphicon glyphicon-paste"></span>Paste</a>
+      </p>
+      
+      </div>
+  </body>
+</html>
